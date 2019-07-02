@@ -4,7 +4,8 @@
   "description": "Worksjop - NodeJS app with Express",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,10 @@
   "homepage": "https://github.com/miickeyreyez/nodejs-workshop#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5"
   }
 }
