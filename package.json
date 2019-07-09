@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel index.js -d lib",
-    "start": "babel-watch ./index.js"
+    "start": "babel-watch ./index.js",
+    "lint": "eslint . --ext .js --cache"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,9 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "babel-watch": "^7.0.0"
+    "babel-watch": "^7.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0"
   }
 }
