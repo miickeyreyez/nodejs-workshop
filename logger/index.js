@@ -1,4 +1,8 @@
 import winston from 'winston';
+import dotenv from 'dotenv';
+
+// Load dotenv
+dotenv.config();
 
 const {
   createLogger,
@@ -11,7 +15,7 @@ const { combine, timestamp, printf } = format;
 const customFormat = printf(({ level, message, timestamp: time }) => (
   `${time} - [${level.toUpperCase()}]: ${message}`));
 
-const logLevel = 'info';
+const logLevel = process.env.LOG_LEVEL;
 
 const logger = createLogger({
   level: logLevel,
