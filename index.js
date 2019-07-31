@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import '@babel/polyfill';
 import log from './logger';
 import db from './db';
+import routes from './routes';
 
 // Load dotenv
 dotenv.config();
@@ -16,8 +17,7 @@ const {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-app.get('/', (req, res) => res.send({ error: true, message: 'hello' }));
+app.use(routes);
 
 app.listen(PORT, () => {
   // Connect to database
