@@ -2,7 +2,7 @@ import log from '../logger';
 import PokemonModule from '../modules';
 import { actions, error } from '../constants';
 
-module.exports.PokemonController = class {
+class PokemonController {
   static async getPokemon(req, res) {
     const { id } = req.params;
     const pokemon = await PokemonModule.find(id);
@@ -16,4 +16,7 @@ module.exports.PokemonController = class {
       res.status(404).send({ error: error.messages.notFound(id) });
     }
   }
-};
+}
+
+// eslint-disable-next-line import/prefer-default-export
+export { PokemonController };

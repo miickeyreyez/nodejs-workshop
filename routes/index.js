@@ -3,4 +3,4 @@ const { PokemonController } = require('../controllers');
 
 router.get('/:id', PokemonController.getPokemon);
 
-module.exports = router;
+export default router;

@@ -1,7 +1,7 @@
 import log from '../logger';
 import PokemonModel from '../models';
 
-module.exports = class {
+class PokemonModule {
   static async find(id) {
     let pokemon = [];
     try {
@@ -11,4 +11,6 @@ module.exports = class {
     }
     return pokemon[0];
   }
-};
+}
+
+export default PokemonModule;
