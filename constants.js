@@ -1,12 +1,17 @@
-const error = {
-  messages: {
-    notFound: id => `Pokemon with id: ${id} does not exists`,
-  },
+/* eslint-disable max-len */
+const errors = {
+  notFound: id => `Pokemon with id: ${id} does not exists`,
+  addingError: () => 'Pokemon could not be added',
+  getDBerror: (id, stack) => `Error getting Pokemon with id: ${id}, stack: ${stack}`,
+  addDBerror: (pokemon, stack) => `Error adding Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
+  existingPokemonError: id => `Pokemon with id: ${id} already exists`,
 };
 
 const actions = {
-  getting: id => `Getting pokemon with id: ${id}`,
-  founded: pokemon => `Founded pokemon - ${JSON.stringify(pokemon)}`,
+  get: id => `Getting pokemon with id: ${id}`,
+  found: pokemon => `Pokemon found - ${JSON.stringify(pokemon)}`,
+  add: pokemon => `Pokemon to add - ${JSON.stringify(pokemon)}`,
+  existed: pokemon => `Pokemon already exists - ${JSON.stringify(pokemon)}`,
 };
 
 const ALLOW_ORIGIN = 'Access-Control-Allow-Origin';
@@ -21,7 +26,7 @@ const ALLOW = 'Allow';
 const REST_METHODS = 'GET, POST, OPTIONS, PUT, DELETE';
 
 export {
-  error,
+  errors,
   actions,
   ALLOW_ORIGIN,
   ALLOW_WILDCARD,
