@@ -12,8 +12,8 @@ class PokemonModule {
 
     try {
       pokemon = await PokemonModel.find({ id }, null, { limit: 1 });
-    } catch (err) {
-      log(getDBerror(id, err.stack));
+    } catch (error) {
+      log(getDBerror(id, error.stack));
     }
     return pokemon[0];
   }
@@ -29,15 +29,18 @@ class PokemonModule {
       const { id } = newPokemon;
       const pokemonExists = await PokemonModule.find(id);
 
+      let existed = false;
+
       if (pokemonExists) {
         log(existingPokemonError(id));
-        return { addedPokemon: undefined, existed: true };
+        existed = true;
+      } else {
+        await newPokemon.save();
       }
 
-      await newPokemon.save();
-      return { addedPokemon: newPokemon, existed: false };
-    } catch (err) {
-      log(addDBerror(pokemon, err.stack));
+      return { addedPokemon: newPokemon, existed };
+    } catch (error) {
+      log(addDBerror(pokemon, error.stack));
       return undefined;
     }
   }
