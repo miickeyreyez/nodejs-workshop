@@ -1,3 +1,4 @@
+import paginate from 'mongoose-pagination';
 import log from '../logger';
 import PokemonModule from '../modules';
 import { actions, errors } from '../constants';
@@ -58,6 +59,25 @@ class PokemonController {
       res.send({ pokemon: addedPokemon, existed });
     } else {
       res.status(500).send({ error: addingError(id) });
+    }
+  }
+
+  static async getAllPokemon(req, res) {
+    const { page } = req.params;
+
+    const {
+      notFound,
+    } = errors;
+
+    const pokemon = await PokemonModule.findAll(page || 1);
+
+    // log(actions.getting(id));
+
+    if (pokemon) {
+      // log(actions.found(pokemon));
+      res.send({ pokemon });
+    } else {
+      res.status(404).send({ error: notFound(1) });
     }
   }
 }

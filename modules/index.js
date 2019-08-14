@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import log from '../logger';
 import PokemonModel from '../models';
 import { errors } from '../constants';
@@ -43,6 +44,33 @@ class PokemonModule {
       log(addDBerror(pokemon, error.stack));
       return undefined;
     }
+  }
+
+  static async findAll(page) {
+    let pokemon = [];
+
+    // Load dotenv
+    dotenv.config();
+
+    let {
+      ITEMS_PAGINATION,
+    } = process.env;
+
+    const {
+      getDBerror,
+    } = errors;
+
+    ITEMS_PAGINATION = parseInt(ITEMS_PAGINATION, 10);
+
+    try {
+      pokemon = await PokemonModel
+        .find()
+        .sort('name.english')
+        .paginate(page, ITEMS_PAGINATION);
+    } catch (error) {
+      log(getDBerror('id', error.stack));
+    }
+    return pokemon;
   }
 }
 
