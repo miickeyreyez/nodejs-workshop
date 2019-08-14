@@ -61,7 +61,6 @@ class PokemonModule {
 
       const pokemonExists = await PokemonModule.find(id);
 
-
       let existent = false;
 
       if (pokemonExists) {
