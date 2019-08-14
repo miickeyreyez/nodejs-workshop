@@ -5,5 +5,6 @@ const { PokemonController } = require('../controllers');
 // router.method('/route', PokemonController.endpointMethod);
 router.get('/pokemon/:id', PokemonController.getPokemon);
 router.get('/pokemonList/:page?', PokemonController.getAllPokemon);
+router.post('/pokemon/', PokemonController.addPokemon);
 
 export default router;

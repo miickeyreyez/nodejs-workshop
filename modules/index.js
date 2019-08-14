@@ -47,6 +47,36 @@ class PokemonModule {
     }
     return pokemon;
   }
+
+  static async add(pokemon) {
+    const {
+      addDBerror,
+      existentPokemonError,
+    } = errors;
+
+    try {
+      const newPokemon = new PokemonModel(pokemon);
+
+      const { id } = newPokemon;
+
+      const pokemonExists = await PokemonModule.find(id);
+
+
+      let existent = false;
+
+      if (pokemonExists) {
+        log(existentPokemonError(id));
+        existent = true;
+      } else {
+        await newPokemon.save();
+      }
+
+      return { addedPokemon: newPokemon, existent };
+    } catch (error) {
+      log(addDBerror(pokemon, error.stack));
+      return undefined;
+    }
+  }
 }
 
 export default PokemonModule;

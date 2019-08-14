@@ -4,6 +4,9 @@ const errors = {
   getDBerror: (id, stack) => `Error getting Pokemon with id: ${id}, stack: ${stack}`,
   pokemonNotFound: page => `Cannot get Pokemon on page: ${page}`,
   getAllDBerror: (page, stack) => `Error getting Pokemon in page: ${page}, stack: ${stack}`,
+  addError: pokemon => `Pokemon could not be added - Pokemon: ${JSON.stringify(pokemon)}`,
+  existentPokemonError: id => `Pokemon with id: ${id} already exists`,
+  addDBerror: (pokemon, stack) => `Error adding Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
 };
 
 const actions = {
@@ -11,6 +14,8 @@ const actions = {
   found: pokemon => `Pokemon found - ${JSON.stringify(pokemon)}`,
   getAll: page => `Getting pokemon in page: ${page}`,
   pokemonFound: page => `Pokemon found on page: ${page}`,
+  add: pokemon => `Pokemon to add - ${JSON.stringify(pokemon)}`,
+  existent: pokemon => `Pokemon already exists - ${JSON.stringify(pokemon)}`,
 };
 
 const ALLOW_ORIGIN = 'Access-Control-Allow-Origin';

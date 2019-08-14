@@ -52,6 +52,43 @@ class PokemonController {
       res.status(404).send({ error: pokemonNotFound(page) });
     }
   }
+
+  static async addPokemon(req, res) {
+    const {
+      add,
+      existent: existentAction,
+    } = actions;
+
+    const {
+      addError,
+    } = errors;
+
+    const {
+      url_image: urlImage,
+      type,
+      id,
+      name,
+    } = req.body;
+
+    const pokemon = {
+      url_image: urlImage,
+      type,
+      id,
+      name,
+    };
+
+    const { addedPokemon, existent } = await PokemonModule.add(pokemon);
+
+    if (addedPokemon || existent) {
+      // eslint-disable-next-line no-unused-expressions
+      !existent && log(add(addedPokemon));
+      // eslint-disable-next-line no-unused-expressions
+      existent && log(existentAction(addedPokemon));
+      res.send({ pokemon: addedPokemon, existent });
+    } else {
+      res.status(500).send({ error: addError(pokemon) });
+    }
+  }
 }
 
 // eslint-disable-next-line import/prefer-default-export
