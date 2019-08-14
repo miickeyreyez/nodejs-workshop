@@ -1,4 +1,5 @@
-const error = {
+/* eslint-disable max-len */
+const errors = {
 };
 
 const actions = {
@@ -16,7 +17,7 @@ const ALLOW = 'Allow';
 const REST_METHODS = 'GET, POST, OPTIONS, PUT, DELETE';
 
 export {
-  error,
+  errors,
   actions,
   ALLOW_ORIGIN,
   ALLOW_WILDCARD,
