@@ -5,15 +5,25 @@ import { actions, errors } from '../constants';
 class PokemonController {
   static async getPokemon(req, res) {
     const { id } = req.params;
+
+    const {
+      get,
+      found,
+    } = actions;
+
+    const {
+      notFound,
+    } = errors;
+
     const pokemon = await PokemonModule.find(id);
 
-    log(actions.getting(id));
+    log(get(id));
 
     if (pokemon) {
-      log(actions.founded(pokemon));
+      log(found(pokemon));
       res.send({ pokemon });
     } else {
-      res.status(404).send({ error: errors.notFound(id) });
+      res.status(404).send({ error: notFound(id) });
     }
   }
 }
