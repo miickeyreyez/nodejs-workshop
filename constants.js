@@ -1,7 +1,5 @@
 const error = {
-  messages: {
-    notFound: id => `Pokemon with id: ${id} does not exists`,
-  },
+  notFound: id => `Pokemon with id: ${id} does not exists`,
 };
 
 const actions = {

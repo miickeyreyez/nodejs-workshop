@@ -1,6 +1,6 @@
 import log from '../logger';
 import PokemonModule from '../modules';
-import { actions, error } from '../constants';
+import { actions, errors } from '../constants';
 
 class PokemonController {
   static async getPokemon(req, res) {
@@ -13,7 +13,7 @@ class PokemonController {
       log(actions.founded(pokemon));
       res.send({ pokemon });
     } else {
-      res.status(404).send({ error: error.messages.notFound(id) });
+      res.status(404).send({ error: errors.notFound(id) });
     }
   }
 }

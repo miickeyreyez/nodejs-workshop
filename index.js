@@ -36,7 +36,6 @@ app.use(bodyParser.json());
 app.use(routes);
 
 app.listen(PORT, () => {
-  // Connect to database
   db();
   log(`Node app is running on port ${PORT}`);
 });
