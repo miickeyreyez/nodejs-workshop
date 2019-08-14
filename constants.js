@@ -1,15 +1,15 @@
 /* eslint-disable max-len */
 const errors = {
   notFound: id => `Pokemon with id: ${id} does not exists`,
-  pokemonNotFound: page => `Cannot get Pokemon on page: ${page}`,
   getDBerror: (id, stack) => `Error getting Pokemon with id: ${id}, stack: ${stack}`,
+  pokemonNotFound: page => `Cannot get Pokemon on page: ${page}`,
   getAllDBerror: (page, stack) => `Error getting Pokemon in page: ${page}, stack: ${stack}`,
 };
 
 const actions = {
   get: id => `Getting pokemon with id: ${id}`,
-  getAll: page => `Getting pokemon in page: ${page}`,
   found: pokemon => `Pokemon found - ${JSON.stringify(pokemon)}`,
+  getAll: page => `Getting pokemon in page: ${page}`,
   pokemonFound: page => `Pokemon found on page: ${page}`,
 };
 

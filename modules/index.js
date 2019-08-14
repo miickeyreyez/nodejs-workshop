@@ -32,7 +32,7 @@ class PokemonModule {
     } = process.env;
 
     const {
-      getDBerror,
+      getAllDBerror,
     } = errors;
 
     ITEMS_PAGINATION = parseInt(ITEMS_PAGINATION, 10);
@@ -43,7 +43,7 @@ class PokemonModule {
         .sort('id')
         .paginate(page, ITEMS_PAGINATION);
     } catch (error) {
-      log(getDBerror('id', error.stack));
+      log(getAllDBerror(page, error.stack));
     }
     return pokemon;
   }
