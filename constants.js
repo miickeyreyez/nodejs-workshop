@@ -1,17 +1,16 @@
 /* eslint-disable max-len */
 const errors = {
   notFound: id => `Pokemon with id: ${id} does not exists`,
-  addingError: () => 'Pokemon could not be added',
+  pokemonNotFound: page => `Cannot get Pokemon on page: ${page}`,
   getDBerror: (id, stack) => `Error getting Pokemon with id: ${id}, stack: ${stack}`,
-  addDBerror: (pokemon, stack) => `Error adding Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
-  existingPokemonError: id => `Pokemon with id: ${id} already exists`,
+  getAllDBerror: (page, stack) => `Error getting Pokemon in page: ${page}, stack: ${stack}`,
 };
 
 const actions = {
   get: id => `Getting pokemon with id: ${id}`,
+  getAll: page => `Getting pokemon in page: ${page}`,
   found: pokemon => `Pokemon found - ${JSON.stringify(pokemon)}`,
-  add: pokemon => `Pokemon to add - ${JSON.stringify(pokemon)}`,
-  existed: pokemon => `Pokemon already exists - ${JSON.stringify(pokemon)}`,
+  pokemonFound: page => `Pokemon found on page: ${page}`,
 };
 
 const ALLOW_ORIGIN = 'Access-Control-Allow-Origin';

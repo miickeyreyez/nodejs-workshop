@@ -1,4 +1,3 @@
-import paginate from 'mongoose-pagination';
 import log from '../logger';
 import PokemonModule from '../modules';
 import { actions, errors } from '../constants';
@@ -28,56 +27,29 @@ class PokemonController {
     }
   }
 
-  static async addPokemon(req, res) {
+  static async getAllPokemon(req, res) {
+    let { page } = req.params;
+
+    page = page || 1;
+
     const {
-      add,
+      getAll,
+      pokemonFound,
     } = actions;
 
     const {
-      addingError,
+      pokemonNotFound,
     } = errors;
 
-    const {
-      url_image: urlImage,
-      type,
-      id,
-      name,
-    } = req.body;
+    const pokemon = await PokemonModule.findAll(page);
 
-    const pokemon = {
-      url_image: urlImage,
-      type,
-      id,
-      name,
-    };
-
-    const { addedPokemon, existed } = await PokemonModule.add(pokemon);
-
-    if (addedPokemon || existed) {
-      // eslint-disable-next-line no-unused-expressions
-      addedPokemon && log(add(addedPokemon));
-      res.send({ pokemon: addedPokemon, existed });
-    } else {
-      res.status(500).send({ error: addingError(id) });
-    }
-  }
-
-  static async getAllPokemon(req, res) {
-    const { page } = req.params;
-
-    const {
-      notFound,
-    } = errors;
-
-    const pokemon = await PokemonModule.findAll(page || 1);
-
-    // log(actions.getting(id));
+    log(getAll(page));
 
     if (pokemon) {
-      // log(actions.found(pokemon));
+      log(pokemonFound(page));
       res.send({ pokemon });
     } else {
-      res.status(404).send({ error: notFound(1) });
+      res.status(404).send({ error: pokemonNotFound(page) });
     }
   }
 }
