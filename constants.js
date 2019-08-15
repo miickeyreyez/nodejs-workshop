@@ -7,6 +7,8 @@ const errors = {
   addError: pokemon => `Pokemon could not be added - Pokemon: ${JSON.stringify(pokemon)}`,
   existentPokemonError: id => `Pokemon with id: ${id} already exists`,
   addDBerror: (pokemon, stack) => `Error adding Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
+  updateError: pokemon => `Pokemon could not be updated - Pokemon: ${JSON.stringify(pokemon)}`,
+  updateDBerror: (pokemon, stack) => `Error updating Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
 };
 
 const actions = {
@@ -16,6 +18,7 @@ const actions = {
   pokemonFound: page => `Pokemon found on page: ${page}`,
   add: pokemon => `Pokemon to add - ${JSON.stringify(pokemon)}`,
   existent: pokemon => `Pokemon already exists - ${JSON.stringify(pokemon)}`,
+  update: pokemon => `Pokemon to update - ${JSON.stringify(pokemon)}`,
 };
 
 const ALLOW_ORIGIN = 'Access-Control-Allow-Origin';

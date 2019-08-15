@@ -73,7 +73,37 @@ class PokemonModule {
       return { addedPokemon: newPokemon, existent };
     } catch (error) {
       log(addDBerror(pokemon, error.stack));
-      return undefined;
+      return { addedPokemon: undefined };
+    }
+  }
+
+  static async update(pokemon) {
+    const {
+      updateDBerror,
+      notFound,
+    } = errors;
+
+    try {
+      let updatedPokemon = new PokemonModel(pokemon);
+
+      const { id, name, type } = updatedPokemon;
+
+      const pokemonExists = await PokemonModule.find(id);
+
+      if (!pokemonExists) {
+        log(notFound(id));
+        updatedPokemon = undefined;
+      } else {
+        await PokemonModel.updateOne(
+          { id },
+          { id, name, type },
+        );
+      }
+
+      return { updatedPokemon };
+    } catch (error) {
+      log(updateDBerror(pokemon, error.stack));
+      return { updatedPokemon: undefined };
     }
   }
 }

@@ -89,6 +89,41 @@ class PokemonController {
       res.status(500).send({ error: addError(pokemon) });
     }
   }
+
+  static async updatePokemon(req, res) {
+    const { id } = req.params;
+
+    const {
+      update,
+    } = actions;
+
+    const {
+      updateError,
+    } = errors;
+
+    const {
+      url_image: urlImage,
+      type,
+      name,
+    } = req.body;
+
+    const pokemon = {
+      url_image: urlImage,
+      type,
+      id,
+      name,
+    };
+
+    const { updatedPokemon } = await PokemonModule.update(pokemon);
+
+    if (updatedPokemon) {
+      // eslint-disable-next-line no-unused-expressions
+      log(update(updatedPokemon));
+      res.send({ pokemon: updatedPokemon });
+    } else {
+      res.status(500).send({ error: updateError(pokemon) });
+    }
+  }
 }
 
 // eslint-disable-next-line import/prefer-default-export
