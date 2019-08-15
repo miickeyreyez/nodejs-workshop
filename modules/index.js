@@ -73,7 +73,7 @@ class PokemonModule {
       return { addedPokemon: newPokemon, existent };
     } catch (error) {
       log(addDBerror(pokemon, error.stack));
-      return undefined;
+      return { addedPokemon: undefined };
     }
   }
 }
