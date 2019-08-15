@@ -86,7 +86,8 @@ class PokemonModule {
     try {
       let updatedPokemon = new PokemonModel(pokemon);
 
-      const { id, name, type } = updatedPokemon;
+      // eslint-disable-next-line camelcase
+      const { id, name, type, url_image } = updatedPokemon;
 
       const pokemonExists = await PokemonModule.find(id);
 
@@ -96,7 +97,7 @@ class PokemonModule {
       } else {
         await PokemonModel.updateOne(
           { id },
-          { id, name, type },
+          { name, type, url_image },
         );
       }
 
