@@ -74,7 +74,6 @@ class PokemonModule {
     } catch (error) {
       log(addDBerror(pokemon, error.stack));
       return { addedPokemon: undefined };
-<<<<<<< HEAD
     }
   }
 
@@ -105,8 +104,6 @@ class PokemonModule {
     } catch (error) {
       log(updateDBerror(pokemon, error.stack));
       return { updatedPokemon: undefined };
-=======
->>>>>>> 03-post-endpoint
     }
   }
 }

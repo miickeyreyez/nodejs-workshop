@@ -117,7 +117,6 @@ class PokemonController {
     const { updatedPokemon } = await PokemonModule.update(pokemon);
 
     if (updatedPokemon) {
-      // eslint-disable-next-line no-unused-expressions
       log(update(updatedPokemon));
       res.send({ pokemon: updatedPokemon });
     } else {
