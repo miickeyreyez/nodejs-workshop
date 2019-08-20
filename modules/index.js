@@ -126,7 +126,7 @@ class PokemonModule {
       return { deletedPokemon };
     } catch (error) {
       log(deleteDBerror(id, error.stack));
-      return { updatedPokemon: undefined };
+      return { deletedPokemon: undefined };
     }
   }
 }
