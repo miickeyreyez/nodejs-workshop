@@ -107,6 +107,28 @@ class PokemonModule {
       return { updatedPokemon: undefined };
     }
   }
+
+  static async delete(id) {
+    const {
+      deleteDBerror,
+      notFound,
+    } = errors;
+
+    try {
+      const deletedPokemon = await PokemonModule.find(id);
+
+      if (!deletedPokemon) {
+        log(notFound(id));
+      } else {
+        await PokemonModel.findOneAndRemove({ id });
+      }
+
+      return { deletedPokemon };
+    } catch (error) {
+      log(deleteDBerror(id, error.stack));
+      return { updatedPokemon: undefined };
+    }
+  }
 }
 
 export default PokemonModule;

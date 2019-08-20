@@ -123,6 +123,27 @@ class PokemonController {
       res.status(500).send({ error: updateError(pokemon) });
     }
   }
+
+  static async deletePokemon(req, res) {
+    const { id } = req.params;
+
+    const {
+      deleted,
+    } = actions;
+
+    const {
+      deleteError,
+    } = errors;
+
+    const { deletedPokemon } = await PokemonModule.delete(id);
+
+    if (deletedPokemon) {
+      log(deleted(deletedPokemon));
+      res.send({ pokemon: deletedPokemon });
+    } else {
+      res.status(500).send({ error: deleteError(id) });
+    }
+  }
 }
 
 // eslint-disable-next-line import/prefer-default-export

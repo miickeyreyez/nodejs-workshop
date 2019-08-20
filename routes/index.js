@@ -7,5 +7,6 @@ router.get('/pokemon/:id', PokemonController.getPokemon);
 router.get('/pokemonList/:page?', PokemonController.getAllPokemon);
 router.post('/pokemon/', PokemonController.addPokemon);
 router.put('/pokemon/:id', PokemonController.updatePokemon);
+router.delete('/pokemon/:id', PokemonController.deletePokemon);
 
 export default router;

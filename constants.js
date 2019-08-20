@@ -9,6 +9,8 @@ const errors = {
   addDBerror: (pokemon, stack) => `Error adding Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
   updateError: pokemon => `Pokemon could not be updated - Pokemon: ${JSON.stringify(pokemon)}`,
   updateDBerror: (pokemon, stack) => `Error updating Pokemon: ${JSON.stringify(pokemon)}, stack: ${stack}`,
+  deleteError: id => `Pokemon could not be deleted - Pokemon with id: ${id}`,
+  deleteDBerror: (id, stack) => `Error deleting Pokemon with id: ${id}, stack: ${stack}`,
 };
 
 const actions = {
@@ -19,6 +21,7 @@ const actions = {
   add: pokemon => `Pokemon to add - ${JSON.stringify(pokemon)}`,
   existent: pokemon => `Pokemon already exists - ${JSON.stringify(pokemon)}`,
   update: pokemon => `Pokemon to update - ${JSON.stringify(pokemon)}`,
+  deleted: id => `Pokemon to delete - ${id}`,
 };
 
 const ALLOW_ORIGIN = 'Access-Control-Allow-Origin';
