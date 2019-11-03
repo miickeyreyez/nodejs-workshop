@@ -40,4 +40,5 @@ app.listen(PORT, () => {
   log(`Node app is running on port ${PORT}`);
 });
 
-export default { app };
+// export default { app };
+module.exports = app;
