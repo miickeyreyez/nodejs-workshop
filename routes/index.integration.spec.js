@@ -14,7 +14,7 @@ const body = {
 };
 
 describe(`POST ${POKEMON_EP}`, () => {
-  it('return existent flag as true if Pokemon already exists', async () => {
+  it('return existent flag as true if Pokemon already exists', async (done) => {
     const response = await supertest(app)
       .post(POKEMON_EP)
       .send(body);
@@ -32,9 +32,11 @@ describe(`POST ${POKEMON_EP}`, () => {
     expect(response.body.pokemon.id).toBe(body.id);
     expect(response.body.pokemon.url_image).toBe(body.url_image);
     expect(response.body.existent).toBeTruthy();
+    done();
   });
 
-  it('return existent flag as false if Pokemon does not exists', async () => {
+  // eslint-disable-next-line max-len
+  it('return existent flag as false if Pokemon does not exists', async (done) => {
     body.id = 1125;
     const response = await supertest(app)
       .post(POKEMON_EP)
@@ -53,5 +55,6 @@ describe(`POST ${POKEMON_EP}`, () => {
     expect(response.body.pokemon.id).toBe(body.id);
     expect(response.body.pokemon.url_image).toBe(body.url_image);
     expect(response.body.existent).toBeFalsy();
+    done();
   });
 });
