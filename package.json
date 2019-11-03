@@ -7,7 +7,7 @@
     "build": "babel index.js -d lib",
     "start": "babel-watch ./index.js",
     "lint": "eslint . --ext .js --cache",
-    "test": "jest"
+    "test": "jest --config jest.config.js --coverage"
   },
   "repository": {
     "type": "git",
