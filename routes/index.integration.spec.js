@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+// eslint-disable-next-line import/no-unresolved
 const supertest = require('supertest');
 
 const app = require('../index');
